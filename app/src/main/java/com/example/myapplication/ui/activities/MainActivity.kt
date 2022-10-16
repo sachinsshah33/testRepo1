@@ -14,7 +14,10 @@ import com.example.myapplication.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -58,7 +61,7 @@ fun Dashboard(viewModel: UserViewModel = viewModel()) {
 
         SubscriptionMilesLeftCircularProgressIndicator(viewModel)
         LastEnergyLevelCircularProgressIndicator(viewModel)
-        Button(onClick = { viewModel.fetchUser() }) {
+        Button(onClick = { viewModel.fetchUser() }, modifier = Modifier.testTag("Refresh")) {
             Text(text = stringResource(id = R.string.button_refresh))
         }
 
@@ -95,9 +98,9 @@ fun CircularProgressViewNewBinding(modifier: Modifier = Modifier.size(size = 112
 
 
 
-@Preview
+//@Preview
 @Composable
-fun CommonCircularProgressIndicator(modifier: Modifier = Modifier.size(size = 112.dp), value: Int = 0, max: Int = 100, color: Color = Color.Magenta, strokeWidthDp: Int = 6) {
+fun CommonCircularProgressIndicator(tag: String, modifier: Modifier = Modifier.size(size = 112.dp).semantics { testTag = tag }, value: Int = 0, max: Int = 100, color: Color = Color.Magenta, strokeWidthDp: Int = 6) {
     val animatedProgress = animateFloatAsState(
         targetValue = value.toPercentageOutOf1(max),
         animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
@@ -110,19 +113,19 @@ fun CommonCircularProgressIndicator(modifier: Modifier = Modifier.size(size = 11
         strokeWidth = strokeWidthDp.dp
     )
 
-    Text(text = value.toString())
+    Text(text = value.toString(), modifier = Modifier.semantics { testTag = "${tag}_Text" })
 }
 
 @Composable
 fun SubscriptionMilesLeftCircularProgressIndicator(viewModel: UserViewModel = viewModel()) {
     CommonCircularProgressIndicator(
-        value = viewModel.subscriptionMilesLeft, max = Constants.subscriptionMilesLeftMax
+        tag = "SubscriptionMilesLeftCircularProgressIndicator", value = viewModel.subscriptionMilesLeft, max = Constants.subscriptionMilesLeftMax
     )
 }
 
 @Composable
 fun LastEnergyLevelCircularProgressIndicator(viewModel: UserViewModel = viewModel()) {
     CommonCircularProgressIndicator(
-        value = viewModel.lastEnergyLevel, max = Constants.lastEnergyLevelMax
+        tag = "LastEnergyLevelCircularProgressIndicator", value = viewModel.lastEnergyLevel, max = Constants.lastEnergyLevelMax
     )
 }

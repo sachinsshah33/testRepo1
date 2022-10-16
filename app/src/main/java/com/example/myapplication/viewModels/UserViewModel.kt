@@ -18,8 +18,8 @@ class UserViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var user: UserUI? by mutableStateOf(null)
-    val subscriptionMilesLeft get() = user?.subscription_miles_left?:0f
-    val lastEnergyLevel get() = user?.last_energy_level?:0f
+    val subscriptionMilesLeft get() = user?.subscription_miles_left?:0
+    val lastEnergyLevel get() = user?.last_energy_level?:0
 
     fun fetchUser() = run {
         user = null

@@ -18,8 +18,6 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class UserViewModelTests {
 
-
-
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
@@ -46,6 +44,7 @@ class UserViewModelTests {
         userViewModel = UserViewModel(userUseCase)
     }
 
+    //todo, look at using: https://github.com/square/okhttp/tree/master/mockwebserver
     /*@Test
     fun `refresh user`() = runTest {
         userViewModel.fetchUser()

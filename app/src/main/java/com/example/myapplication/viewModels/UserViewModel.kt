@@ -1,9 +1,9 @@
 package com.example.myapplication.viewModels
 
-import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.ui.models.UserUI
 import com.example.myapplication.useCases.UserUseCase
@@ -13,14 +13,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    application: Application,
     private val userUseCase: UserUseCase
-) : BaseAndroidViewModel(application) {
+) : ViewModel() {
 
     var user: UserUI? by mutableStateOf(null)
         private set
 
-    fun getUser() = run {
+    fun fetchUser() = run {
         viewModelScope.launch {
             user = userUseCase.user()?.run { UserUI(this) }
         }

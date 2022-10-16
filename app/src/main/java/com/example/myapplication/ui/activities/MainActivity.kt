@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        userViewModel.getUser()
+        userViewModel.fetchUser()
     }
 }
 

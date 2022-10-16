@@ -4,8 +4,8 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class Service(private val endpoints: Endpoints) {
-    suspend fun user() = withContext(Dispatchers.IO) {
+class Service(private val endpoints: Endpoints): IService{
+    override suspend fun user() = withContext(Dispatchers.IO) {
         try {
             endpoints.user().body()
         } catch (e: Exception) {

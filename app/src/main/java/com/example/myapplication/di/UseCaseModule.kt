@@ -1,6 +1,6 @@
 package com.example.myapplication.di
 
-import com.example.myapplication.repo.UserRepository
+import com.example.myapplication.repo.UserRepo
 import com.example.myapplication.useCases.UserUseCase
 import dagger.Module
 import dagger.Provides
@@ -14,5 +14,5 @@ object UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideUserUseCase(repository: UserRepository) = UserUseCase(repository)
+    fun provideUserUseCase(repository: UserRepo) = UserUseCase(repository)
 }

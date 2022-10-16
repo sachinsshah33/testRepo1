@@ -1,6 +1,6 @@
 package com.example.myapplication.di
 
-import com.example.myapplication.repo.UserRepository
+import com.example.myapplication.repo.UserRepo
 import com.example.myapplication.repo.network.Service
 import dagger.Module
 import dagger.Provides
@@ -15,5 +15,5 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepository(service: Service) = UserRepository(service)
+    fun provideRepository(service: Service) = UserRepo(service)
 }

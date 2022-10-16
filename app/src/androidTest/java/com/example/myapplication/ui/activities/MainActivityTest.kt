@@ -26,7 +26,7 @@ class MainActivityTest {
             }
         }
         //todo, need to mock viewModel properly
-        
+
         composeTestRule.onNodeWithTag("Refresh").performClick()
         composeTestRule.onNodeWithTag("SubscriptionMilesLeftCircularProgressIndicator_Text").assertTextEquals("747")
         composeTestRule.onNodeWithTag("LastEnergyLevelCircularProgressIndicator_Text").assertTextEquals("72")

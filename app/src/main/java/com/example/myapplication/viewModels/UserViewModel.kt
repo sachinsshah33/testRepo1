@@ -26,6 +26,8 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch {
             delay(500) // this is just so circular progress animation has time to animate, todo think of a better way for this
             user = userUseCase.user()?.run { UserUI(this) }
+
+            //todo, add some loading logic here, i.e. show loading spinner or toast if network call failed
         }
     }
 }
